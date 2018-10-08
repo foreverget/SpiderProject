@@ -16,3 +16,22 @@ data = {
 resp = requests.post(url,headers=headers,data=data)
 # 如果是json数据，直接可以调用json方法
 print(resp.json())
+
+# 练习2
+
+import requests
+
+
+url = 'http://fanyi.baidu.com/sug'
+
+data = {
+    'kw': 'hello'
+}
+
+r = requests.post(url=url, data=data)
+
+print(r.text)
+
+# 把json数据编码
+print(r.json())
+
