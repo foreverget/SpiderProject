@@ -23,3 +23,42 @@ print(response.encoding)
 
 # 查看响应码
 print(response.status_code)
+
+
+# 练习2
+import requests
+
+
+url = 'https://www.baidu.com'
+#
+# r = requests.get(url=url)
+#
+# # 查看内容
+# print(r.text)
+#
+# # 查看编码
+# print(r.encoding)
+#
+# # 转换编码
+# r.encoding = 'utf-8'
+#
+# print(r.text)
+
+
+# get请求带参数
+
+r = requests.get(url=url)
+r.encoding = 'utf-8'
+
+# 查看请求地址
+print(r.url)
+
+print(r.content)
+# 状态码
+print(r.status_code)
+
+# 头部信息
+print(r.headers)
+# print(r.text)
+# with open('./baidu58.html', 'w', encoding='utf-8') as fp:
+#     fp.write(r.text)
