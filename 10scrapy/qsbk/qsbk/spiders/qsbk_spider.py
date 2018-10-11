@@ -6,7 +6,7 @@ class QsbkSpiderSpider(scrapy.Spider):
     name = 'qsbk_spider'
     allowed_domains = ['qiushibaike.com']
     start_urls = ['https://www.qiushibaike.com/text/page/1/']
-
+    base_domains = 'https://www.qiushibaike.com'
     def parse(self, response):
         duanzidivs = response.xpath("//div[@id='content-left']/div")
         # items = [] # 不使用yield
@@ -20,6 +20,11 @@ class QsbkSpiderSpider(scrapy.Spider):
             # items.append(item) # 不使用yield
             # return items # 不使用yield
             yield item
+            next_url = response.xpath("//ul[@class='pagination']/li[last()]/a/@href").get()
+            if not next_url:
+                return
+            else:
+                yield scrapy.Request(self.base_domains+next_url,callback=self.parse)
 """
 笔记:
 １、response是一个scrapy.http.response.html.HttpResponse对象．可以执行xpath和css语法提取数据
